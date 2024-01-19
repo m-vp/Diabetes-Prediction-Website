@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Document</title>
+</head>
+<body>
+    <div style="align-content: center;">
+        <p>Welcome to predict page</p>
+        <div style="text-align: center;">
+            enter the info:
+        </div>
+        <form action="/result/" method="post">
+            {% csrf_token %}
+            Name: <input type="text" name="n0">
+            Pregnancies: <input type="text" name="n1">
+            Glucose: <input type="text" name="n2">
+            BP: <input type="text" name="n3">
+            Skin thickness: <input type="text" name="n4">
+            Insulin: <input type="text" name="n5">
+            BMI: <input type="text" name="n6">
+            DPF: <input type="text" name="n7">
+            Age: <input type="text" name="n8">
+            <input type="submit">
+        </form>
+    </div>
+
+        <form action="feedback/">
+            <a href = "{%url 'provide_feedback'%}">Feedback</a>
+        </form>
+</body>
+</html>

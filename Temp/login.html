@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width , initial-scale=1.0">
+        <meta http-equiv="X-UA Compatible" content="ie=edge">
+        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f6f5f7;
+    font-family:'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: -10px 0px 30px;
+}
+/* ===============================FORM BASICS================================ */
+h1 {
+    font-weight: bold;
+    margin: 0px;
+}
+
+p {
+    font-size: 14px;
+    margin: 20px 0px 30px;
+    line-height: 20px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+}
+
+span {
+    font-size: 12px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 15px 0;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 14px 28px rgba(0, 0, 0, 0.25),
+    0px 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.form-container form {
+    background-color: #fff;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/* ===============================SOCIAL ICONS================================ */
+.social-container {
+    margin: 20px 0px;
+}
+
+.social-container a {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px;
+    color: #fff;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+.social-container a:hover{
+    transform: scale(1.2);
+}
+
+.facebook {
+    background-color:#4267B2 ;
+}
+.google-plus {
+    background-color:#db4a39  ;
+}
+.linkedin {
+    background-color:#0e76a8 ;
+}
+.twitter {
+    background-color: #00acee ;
+}
+/* ===============================FORM INPUT & BUTTONS================================ */
+.form-container input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 15px 0px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+button {
+    border: 1px solid #a8186f;
+    background-color: #a8186f;
+    color: #fff;
+    outline: none;
+    border-radius: 24px;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: transform 60ms ease-in;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.95) !important;
+}
+
+button.ghost {
+    background: transparent;
+    border: #fff;
+    border: 1px solid #fff;
+}
+
+.forget{
+    color: #a8186f;
+}
+
+/*----------------------------------------- POSITIONING ----------------------------------------*/
+.form-container{
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-up-container{
+    width: 50%;
+    z-index: 1;
+    left: 0;
+    opacity: 0;
+}
+.sign-in-container{
+    width: 50%;
+    z-index: 2;
+    left: 0;
+}
+
+.overlay-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.overlay{
+    background: #FF0099;
+    background: linear-gradient(to right, #cf0f82, #493240) no-repeat 0 0 / cover;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(0);
+    padding: 0 50px;
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+.overlay-left {
+    transform: translateX(0%);
+}
+
+/* ==========================Animation=============== */
+
+/* Moving signin to right */
+.container.right-active .sign-in-container{
+    transform: translateX(100%);
+}
+
+/* Moving signin to right */
+.container.right-active .overlay-container{
+    transform: translateX(-100%);
+}
+
+/* Moving signup to right */
+.container.right-active .sign-up-container{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 10;
+}
+
+/* Moving signin to right */
+.container.right-active .overlay{
+    transform: translateX(50%);
+   
+}
+
+
+
+
+        </style>
+
+        <title>Signup page</title>
+    </head>
+    <body>
+        {% csrf_token %}
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social google-plus"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <span>or use your email to registration</span>
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <button>Sign up</button>
+                
+            </div>
+
+            <div class="form-container sign-in-container">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social google-plus"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <span></span>
+                    <input type="text" placeholder="Username" id="input-email" name = "username"/>
+                    <input type="password" placeholder="Password" id="input-password" name="password"/>
+                    
+                    <a href="#" class="forget">Forgot your password ?</a>
+                    <button id="signIn-form">Sign In</button>
+                </form>
+            </div>
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>
+                            To keep connected with us please login with your personal info
+                        </p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+
+                    
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, User!</h1>
+                        <p>
+                            Enter your personal detials and start your journey with us 
+                        </p>
+                       <a href="{% url 'signup' %}" ><button class="ghost" id="signUp">Sign Up</button></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>        
+    </body>
+</html>
